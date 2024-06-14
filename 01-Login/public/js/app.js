@@ -9,9 +9,7 @@ const login = async (targetUrl) => {
     console.log("Logging in", targetUrl);
 
     const options = {
-      // authorizationParams: {
-      //   redirect_uri: window.location.origin,
-      // },
+      // redirect_uri: window.location.origin,
     };
 
     if (targetUrl) {
@@ -52,12 +50,10 @@ const configureClient = async () => {
   const response = await fetchAuthConfig();
   const config = await response.json();
 
-  auth0Client = await auth0.createAuth0Client({
+  auth0Client = await createAuth0Client({
     domain: config.domain,
-    clientId: config.clientId,
-    authorizationParams: {
-      redirect_uri: window.location.origin,
-    },
+    client_id: config.clientId,
+    redirect_uri: window.location.origin,
     useRefreshTokens: true,
   });
 };
